@@ -1,6 +1,6 @@
 <template>
   <v-container class="d-flex flex-column ga-15">
-    <h3>Informações pessoais</h3>
+    <h3>Informações para a entrega</h3>
 
     <v-form class="d-flex flex-column ga-5">
       <v-text-field label="Cep" variant="outlined"></v-text-field>

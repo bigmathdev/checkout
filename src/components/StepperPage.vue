@@ -22,7 +22,7 @@
       </v-stepper-window-item>
 
       <v-stepper-window-item :value="3">
-        Teste 3
+        <PaymentForm />
       </v-stepper-window-item>
     </v-stepper-window>
 
