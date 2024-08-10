@@ -18,7 +18,7 @@
       </v-stepper-window-item>
 
       <v-stepper-window-item :value="2">
-        Teste 2
+        <DeliveryForm />
       </v-stepper-window-item>
 
       <v-stepper-window-item :value="3">
