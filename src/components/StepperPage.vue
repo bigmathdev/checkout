@@ -1,18 +1,37 @@
 <template>
-    <v-stepper alt-labels flat class="w-50 bg-white">
-      <v-stepper-header>
-        <v-stepper-item title="Identificação" value="1">
-        </v-stepper-item>
-  
-        <v-divider></v-divider>
-  
-        <v-stepper-item title="Entrega" value="2">
-        </v-stepper-item>
-  
-        <v-divider></v-divider>
-  
-        <v-stepper-item title="Pagamento" value="3">
-        </v-stepper-item>
-      </v-stepper-header>
-    </v-stepper>
+  <v-stepper alt-labels flat class="bg-white" v-model="steps">
+    <v-stepper-header>
+      <v-stepper-item :value="1" title="Identificação" :complete="steps > 1" />
+
+      <v-divider />
+
+      <v-stepper-item :value="2" title="Entrega" :complete="steps > 2" />
+
+      <v-divider />
+
+      <v-stepper-item :value="3" title="Pagamento" :complete="steps > 3" />
+    </v-stepper-header>
+
+    <v-stepper-window>
+      <v-stepper-window-item :value="1">
+        <IdentifyForm />
+      </v-stepper-window-item>
+
+      <v-stepper-window-item :value="2">
+        Teste 2
+      </v-stepper-window-item>
+
+      <v-stepper-window-item :value="3">
+        Teste 3
+      </v-stepper-window-item>
+    </v-stepper-window>
+
+    <v-stepper-actions @click:next="steps++" @click:prev="steps--" />
+  </v-stepper>
 </template>
+
+<script setup>
+import { ref } from 'vue'
+
+const steps = ref(1)
+</script>
