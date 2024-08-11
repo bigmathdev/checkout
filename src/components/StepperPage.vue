@@ -14,19 +14,19 @@
 
     <v-stepper-window>
       <v-stepper-window-item :value="1">
-        <IdentifyForm />
+        <IdentifyForm ref="identifyForm" />
       </v-stepper-window-item>
 
       <v-stepper-window-item :value="2">
-        <DeliveryForm />
+        <DeliveryForm ref="deliveryForm" />
       </v-stepper-window-item>
 
       <v-stepper-window-item :value="3">
-        <PaymentForm />
+        <PaymentForm ref="paymentForm" />
       </v-stepper-window-item>
     </v-stepper-window>
 
-    <v-stepper-actions @click:next="steps++" @click:prev="steps--" />
+    <v-stepper-actions @click:next="validateCurrentStep()" @click:prev="steps--" />
   </v-stepper>
 </template>
 
@@ -34,4 +34,39 @@
 import { ref } from 'vue'
 
 const steps = ref(1)
+const advanceStep = ref(false)
+
+const identifyForm = ref(null)
+const deliveryForm = ref(null)
+const paymentForm = ref(null)
+
+const nextStep = () => {
+  if (advanceStep) {
+    steps.value++
+  }
+}
+
+const validateCurrentStep = async () => {
+  const isValid = ref(null)
+
+  switch (steps.value) {
+    case 1:
+      isValid.value = await identifyForm.value.validate()
+      break;
+    case 2:
+      isValid.value = await deliveryForm.value.validate()
+      break;
+    case 3:
+      isValid.value = await paymentForm.value.validate()
+      break;
+    default:
+      break;
+  }
+
+  if (isValid.value) {
+    steps.value++
+  }
+};
+
+
 </script>
