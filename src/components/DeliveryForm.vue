@@ -3,7 +3,7 @@
     <h3>Informações para a entrega</h3>
 
     <v-form class="d-flex flex-column ga-5" ref="deliveryForm">
-      <v-text-field :rules="cepValidation" abel="Cep" variant="outlined" />
+      <v-text-field :rules="cepValidation" label="Cep" variant="outlined" />
       <v-row>
         <v-col cols="6">
           <v-text-field :rules="streetValidation" label="Rua" variant="outlined" />
@@ -37,30 +37,31 @@ const cepValidation = ref([value => {
 }])
 
 const streetValidation = ref([value => {
-  const streetRegex = /^[a-zA-z]+$/
+  const streetRegex = /^[a-zA-ZÀ-ÖØ-öø-ÿ\s+]+$/
 
-  if (value.length > 3 && streetRegex.test(value)) return true
+
+  if (value?.length > 3 && streetRegex.test(value)) return true
   return "Preencha o nome da rua com mais de 3 caracteres"
 }])
 
 const houseNumberValidation = ref([value => {
   const numberRegex = /^\d+$/
 
-  if (value.length > 1 && numberRegex.test(value)) return true
+  if (value?.length > 1 && numberRegex.test(value)) return true
   return "Preencha o campo com no mínimo 2 dígitos"
 }])
 
 const cityValidation = ref([value => {
-  const cityRegex = /^[a-zA-Z]+$/
+  const cityRegex = /^[a-zA-ZÀ-ÖØ-öø-ÿ\s+]+$/
 
-  if (value.length > 2 && cityRegex.test(value)) return true
+  if (value?.length > 2 && cityRegex.test(value)) return true
   return "Preencha o campo com mais de 2 caracteres, sendo somente letras"
 }])
 
 const stateValidation = ref([value => {
   const stateRegex = /^[a-zA-z]+$/
 
-  if (value.length == 2 && stateRegex.test(value)) return true
+  if (value?.length == 2 && stateRegex.test(value)) return true
   return "Preencha o campo apenas com a abreviação do estado, ex: SP"
 }])
 

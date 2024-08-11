@@ -16,14 +16,15 @@ import { ref } from 'vue'
 const identifyForm = ref(null)
 
 const nameValidation = ref([value => {
-  const nameRegex = /^[a-zA-Z]+$/
+  const nameRegex = /^[a-zA-ZÀ-ÖØ-öø-ÿ\s+]+$/
 
   if (value?.length > 3 && nameRegex.test(value)) return true
   return 'Inclua apenas letras e mais de 3 caracteres'
 }])
 
 const emailValidation = ref([value => {
-  const emailRegex = /^[a-z.-]+@[a-z.-]+\.[a-z]+$/i
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+
 
   if (emailRegex.test(value)) return true
   return 'Preencha com um e-mail válido'
