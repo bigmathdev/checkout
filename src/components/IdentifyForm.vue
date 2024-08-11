@@ -16,23 +16,23 @@ import { ref } from 'vue'
 const identifyForm = ref(null)
 
 const nameValidation = ref([value => {
-  const validName = /^[a-zA-Z]+$/
+  const nameRegex = /^[a-zA-Z]+$/
 
-  if (value?.length > 3 && validName.test(value)) return true
+  if (value?.length > 3 && nameRegex.test(value)) return true
   return 'Inclua apenas letras e mais de 3 caracteres'
 }])
 
 const emailValidation = ref([value => {
-  const validEmail = /^[a-z.-]+@[a-z.-]+\.[a-z]+$/i
+  const emailRegex = /^[a-z.-]+@[a-z.-]+\.[a-z]+$/i
 
-  if (validEmail.test(value)) return true
+  if (emailRegex.test(value)) return true
   return 'Preencha com um e-mail válido'
 }])
 
 const phoneValidation = ref([value => {
-  const validPhone = /^\d+$/
+  const phoneRegex = /^\d+$/
 
-  if (value?.length > 8 && validPhone.test(value)) return true
+  if (value?.length > 8 && phoneRegex.test(value)) return true
   return 'O campo deve conter mais de 8 dígitos e ser somente números'
 }])
 
