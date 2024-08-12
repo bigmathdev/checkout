@@ -10,6 +10,9 @@
       <v-divider />
 
       <v-stepper-item :value="3" title="Pagamento" :complete="steps > 3" />
+      <v-divider />
+
+      <v-stepper-item :value="4" title="Finalizar compra" :complete="steps == 4" />
     </v-stepper-header>
 
     <v-stepper-window>
@@ -24,6 +27,10 @@
       <v-stepper-window-item :value="3">
         <PaymentForm ref="paymentForm" />
       </v-stepper-window-item>
+
+      <v-stepper-window-item :value="4">
+        <h1>Compra Finalizada</h1>
+      </v-stepper-window-item>
     </v-stepper-window>
 
     <v-stepper-actions @click:next="validateCurrentStep()" @click:prev="steps--" />
@@ -34,17 +41,10 @@
 import { ref } from 'vue'
 
 const steps = ref(1)
-const advanceStep = ref(false)
 
 const identifyForm = ref(null)
 const deliveryForm = ref(null)
 const paymentForm = ref(null)
-
-const nextStep = () => {
-  if (advanceStep) {
-    steps.value++
-  }
-}
 
 const validateCurrentStep = async () => {
   const isValid = ref(null)
