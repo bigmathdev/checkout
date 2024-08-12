@@ -1,6 +1,6 @@
 <template>
-  <v-stepper alt-labels flat class="bg-white" v-model="steps">
-    <v-stepper-header>
+  <v-stepper alt-labels flat class="bg-white h-100 d-flex flex-column justify-space-between" v-model="steps">
+    <v-stepper-header class="">
       <v-stepper-item :value="1" title="Identificação" :complete="steps > 1" />
 
       <v-divider />
@@ -29,7 +29,9 @@
       </v-stepper-window-item>
 
       <v-stepper-window-item :value="4">
-        <h1>Compra Finalizada</h1>
+        <!-- <v-overlay :model-value="true" class="align-center justify-center">
+          <v-progress-circular color="primary" size="64" indeterminate></v-progress-circular>
+        </v-overlay> -->
       </v-stepper-window-item>
     </v-stepper-window>
 

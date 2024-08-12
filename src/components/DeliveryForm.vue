@@ -3,21 +3,22 @@
     <h3>Informações para a entrega</h3>
 
     <v-form class="d-flex flex-column ga-5" ref="deliveryForm">
-      <v-text-field :rules="cepValidation" label="Cep" variant="outlined" />
+      <v-text-field :rules="cepValidation" v-model="formCheckout.cep" label="Cep" variant="outlined" append-inner-icon="mdi-magnify" @click:append-inner="getCep(formCheckout.cep)" />
       <v-row>
         <v-col cols="6">
-          <v-text-field :rules="streetValidation" label="Rua" variant="outlined" />
+          <v-text-field :rules="streetValidation" v-model="formCheckout.street" label="Rua" variant="outlined">
+          </v-text-field>
         </v-col>
         <v-col cols="6">
-          <v-text-field :rules="houseNumberValidation" label="Número" variant="outlined" />
+          <v-text-field :rules="houseNumberValidation" v-model="formCheckout.number" label="Número" variant="outlined" />
         </v-col>
       </v-row>
       <v-row>
         <v-col cols="6">
-          <v-text-field :rules="cityValidation" label="Cidade" variant="outlined" />
+          <v-text-field :rules="cityValidation" v-model="formCheckout.city" label="Cidade" variant="outlined" />
         </v-col>
         <v-col cols="6">
-          <v-text-field :rules="stateValidation" label="Estado" variant="outlined" />
+          <v-text-field :rules="stateValidation" label="Estado" v-model="formCheckout.state" variant="outlined" />
         </v-col>
       </v-row>
     </v-form>
@@ -25,12 +26,25 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
+import { useCepStore } from '@/stores/CepStore';
+import { useCheckoutFormStore } from '@/stores/CheckoutFormStore';
+import { storeToRefs } from 'pinia';
+
+
+const checkoutFormModel = useCheckoutFormStore()
+const { formCheckout } = storeToRefs(checkoutFormModel)
+
+
+const { getCep } = useCepStore()
+
+const cepResultRef = useCepStore()
+const { cepResult } = storeToRefs(cepResultRef)
 
 const deliveryForm = ref(null)
 
 const cepValidation = ref([value => {
-  const cepRegex = /^\d+$/
+  const cepRegex = /^[0-9]{8}$/
 
   if (value?.length == 8 && cepRegex.test(value)) return true
   return "Preencha o campo com 8 dígitos"
@@ -74,6 +88,12 @@ const validate = async () => {
     return false;
   }
 }
+
+watch(cepResult, () => {
+  formCheckout.value.street = cepResult.value.logradouro
+  formCheckout.value.city = cepResult.value.localidade
+  formCheckout.value.state = cepResult.value.uf
+})
 
 defineExpose({
   validate

@@ -3,15 +3,20 @@
     <h3>Informações pessoais</h3>
 
     <v-form class="d-flex flex-column ga-5" ref="identifyForm">
-      <v-text-field :rules="nameValidation" label="Nome" variant="outlined" />
-      <v-text-field :rules="emailValidation" label="E-mail" variant="outlined" />
-      <v-text-field :rules="phoneValidation" label="Telefone" variant="outlined" />
+      <v-text-field :rules="nameValidation" v-model="formCheckout.name" label="Nome" variant="outlined" />
+      <v-text-field :rules="emailValidation" v-model="formCheckout.email" label="E-mail" variant="outlined" />
+      <v-text-field :rules="phoneValidation" v-model="formCheckout.phone" label="Telefone" variant="outlined" />
     </v-form>
   </v-container>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import { useCheckoutFormStore } from '@/stores/CheckoutFormStore';
+import { storeToRefs } from 'pinia';
+
+const checkoutFormModel = useCheckoutFormStore()
+const { formCheckout } = storeToRefs(checkoutFormModel)
 
 const identifyForm = ref(null)
 
