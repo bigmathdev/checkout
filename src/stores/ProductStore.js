@@ -7,10 +7,10 @@ export const useProductStore = defineStore("ProductStore", () => {
 
   const getProduct = async () => {
     try {
-      const response = await axios("http://localhost:3000/OFFER_CODE");
-      product.value = await response.json();
+      const response = await axios("https://localhost:3000/OFFER_CODE");
+      product.value = response.data;
     } catch {
-      console.erro("Request error", error);
+      console.error("Request error");
     }
   };
 
