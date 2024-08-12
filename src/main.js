@@ -17,4 +17,18 @@ const app = createApp(App)
 
 registerPlugins(app)
 
-app.mount('#app')
+const prepareApp = async () => {
+  if (
+    process.env.NODE_ENV === 'development' ||
+    process.env.NODE_ENV === 'test'
+  ) {
+    const { worker } = await import('./mocks/browser')
+    return worker.start()
+  }
+
+  return Promise.resolve()
+}
+
+prepareApp().then(() => {
+  app.mount('#app')
+})

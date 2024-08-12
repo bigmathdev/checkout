@@ -10,23 +10,30 @@
       <v-divider />
 
       <v-stepper-item :value="3" title="Pagamento" :complete="steps > 3" />
+      <v-divider />
+
+      <v-stepper-item :value="4" title="Finalizar compra" :complete="steps == 4" />
     </v-stepper-header>
 
     <v-stepper-window>
       <v-stepper-window-item :value="1">
-        <IdentifyForm />
+        <IdentifyForm ref="identifyForm" />
       </v-stepper-window-item>
 
       <v-stepper-window-item :value="2">
-        <DeliveryForm />
+        <DeliveryForm ref="deliveryForm" />
       </v-stepper-window-item>
 
       <v-stepper-window-item :value="3">
-        <PaymentForm />
+        <PaymentForm ref="paymentForm" />
+      </v-stepper-window-item>
+
+      <v-stepper-window-item :value="4">
+        <h1>Compra Finalizada</h1>
       </v-stepper-window-item>
     </v-stepper-window>
 
-    <v-stepper-actions @click:next="steps++" @click:prev="steps--" />
+    <v-stepper-actions @click:next="validateCurrentStep()" @click:prev="steps--" />
   </v-stepper>
 </template>
 
@@ -34,4 +41,32 @@
 import { ref } from 'vue'
 
 const steps = ref(1)
+
+const identifyForm = ref(null)
+const deliveryForm = ref(null)
+const paymentForm = ref(null)
+
+const validateCurrentStep = async () => {
+  const isValid = ref(null)
+
+  switch (steps.value) {
+    case 1:
+      isValid.value = await identifyForm.value.validate()
+      break;
+    case 2:
+      isValid.value = await deliveryForm.value.validate()
+      break;
+    case 3:
+      isValid.value = await paymentForm.value.validate()
+      break;
+    default:
+      break;
+  }
+
+  if (isValid.value) {
+    steps.value++
+  }
+};
+
+
 </script>
