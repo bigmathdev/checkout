@@ -3,9 +3,9 @@
     <h3>Informações pessoais</h3>
 
     <v-form class="d-flex flex-column ga-5" ref="identifyForm">
-      <v-text-field :rules="nameValidation" v-model="formCheckout.name" label="Nome" variant="outlined" />
+      <v-text-field :rules="nameValidation" v-model="formCheckout.name" label="Nome *" variant="outlined" />
       <v-text-field :rules="emailValidation" v-model="formCheckout.email" label="E-mail" variant="outlined" />
-      <v-text-field :rules="phoneValidation" v-model="formCheckout.phone" label="Telefone" variant="outlined" />
+      <v-text-field :rules="phoneValidation" v-model="formCheckout.phone" label="Telefone *" variant="outlined" />
     </v-form>
   </v-container>
 </template>
@@ -30,9 +30,10 @@ const nameValidation = ref([value => {
 const emailValidation = ref([value => {
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
 
-
-  if (emailRegex.test(value)) return true
-  return 'Preencha com um e-mail válido'
+  if (value) {
+    if (emailRegex.test(value)) return true
+    return 'Preencha com um e-mail válido'
+  }
 }])
 
 const phoneValidation = ref([value => {
