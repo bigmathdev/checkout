@@ -7,15 +7,15 @@ export const useProductStore = defineStore("ProductStore", () => {
 
   const getProduct = async () => {
     try {
-      const response = await axios("https://localhost:3000/OFFER_CODE");
+      const response = await axios.get("https://localhost:3000/OFFER_CODE");
       product.value = response.data;
-    } catch {
-      console.error("Request error");
+    } catch ( error) {
+      console.error("Request error", error);
     }
   };
 
   return {
     getProduct,
-    product,
+    product
   };
 });

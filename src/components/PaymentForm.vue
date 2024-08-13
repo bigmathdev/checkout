@@ -51,8 +51,6 @@ import { storeToRefs } from 'pinia';
 const checkoutFormModel = useCheckoutFormStore()
 const { formCheckout } = storeToRefs(checkoutFormModel)
 
-
-const radio = ref('')
 const paymentForm = ref(null)
 
 const nameCardValidation = ref([value => {
@@ -64,10 +62,7 @@ const nameCardValidation = ref([value => {
 
 const numberCardValidation = ref([value => {
   const numberCardRegex = /^(\d{4}\s?){3}\d{4}$/
-
-
-
-
+  
   if (value?.length > 14 && numberCardRegex.test(value)) return true
   return "Insira um número de cartão válido"
 }])

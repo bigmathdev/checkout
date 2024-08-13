@@ -3,22 +3,22 @@
     <h3>Informações para a entrega</h3>
 
     <v-form class="d-flex flex-column ga-5" ref="deliveryForm">
-      <v-text-field :rules="cepValidation" v-model="formCheckout.cep" label="Cep" variant="outlined" append-inner-icon="mdi-magnify" @click:append-inner="getCep(formCheckout.cep)" />
+      <v-text-field :rules="cepValidation" v-model="formCheckout.cep" label="Cep *" variant="outlined" append-inner-icon="mdi-magnify" @click:append-inner="getCep(formCheckout.cep)" />
       <v-row>
         <v-col cols="6">
-          <v-text-field :rules="streetValidation" v-model="formCheckout.street" label="Rua" variant="outlined">
+          <v-text-field :rules="streetValidation" v-model="formCheckout.street" label="Rua *" variant="outlined">
           </v-text-field>
         </v-col>
         <v-col cols="6">
-          <v-text-field :rules="houseNumberValidation" v-model="formCheckout.number" label="Número" variant="outlined" />
+          <v-text-field :rules="houseNumberValidation" v-model="formCheckout.number" label="Número *" variant="outlined" />
         </v-col>
       </v-row>
       <v-row>
         <v-col cols="6">
-          <v-text-field :rules="cityValidation" v-model="formCheckout.city" label="Cidade" variant="outlined" />
+          <v-text-field :rules="cityValidation" v-model="formCheckout.city" label="Cidade *" variant="outlined" />
         </v-col>
         <v-col cols="6">
-          <v-text-field :rules="stateValidation" label="Estado" v-model="formCheckout.state" variant="outlined" />
+          <v-text-field :rules="stateValidation" label="Estado *" v-model="formCheckout.state" variant="outlined" />
         </v-col>
       </v-row>
     </v-form>

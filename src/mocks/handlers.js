@@ -1,7 +1,6 @@
 import { http, HttpResponse } from "msw";
 
 export const handlers = [
-  // Intercept "GET https://example.com/user" requests...
   http.get("https://localhost:3000/OFFER_CODE", () => {
     return HttpResponse.json({
       id: 1,
@@ -11,7 +10,19 @@ export const handlers = [
       itemsIncluded: "Nike Air Jordan Edição Especial",
       paymentMethods: ["Pix", "Boleto Bancário", "Cartão de Crédito"],
       shipping: 13.20,
-      productImages: "../assets/jordan.png",
+      productImages: "src/assets/jordan.png",
+      quantity: 1,
+      total: 1500,
+      subtotal: 1500
     });
   }),
+
+  http.post(
+    "http://localhost:3000/offers/OFFER_CODE/create_order",
+    async ({request}) => {
+      return new HttpResponse(request.body, {
+        status: 201
+      })
+    }
+  ),
 ];
