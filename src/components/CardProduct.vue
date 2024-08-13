@@ -19,7 +19,7 @@
     <v-card :title="product.itemsIncluded" :subtitle="product.size" flat color="transparent" class="w-100">
       <template #prepend>
         <v-img :width="70" :aspect-ratio="1 / 1" class="bg-transparent border-sm border-surface rounded-lg"
-          src="../assets/jordan.png"></v-img>
+          :src="product.productImages"></v-img>
       </template>
       <template #append>
         <div class="d-flex flex-column justify-center align-center">

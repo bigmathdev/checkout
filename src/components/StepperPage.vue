@@ -29,9 +29,7 @@
       </v-stepper-window-item>
 
       <v-stepper-window-item :value="4">
-        <!-- <v-overlay :model-value="true" class="align-center justify-center">
-          <v-progress-circular color="primary" size="64" indeterminate></v-progress-circular>
-        </v-overlay> -->
+        <p class="text-center font-weight-bold">Confirmando pagamento...</p>
       </v-stepper-window-item>
     </v-stepper-window>
 
@@ -40,13 +38,49 @@
 </template>
 
 <script setup>
+import axios from 'axios';
 import { ref } from 'vue'
 
+import { useCheckoutFormStore } from '@/stores/CheckoutFormStore';
+import { storeToRefs } from 'pinia';
+
+const checkoutFormModel = useCheckoutFormStore()
+const { formCheckout } = storeToRefs(checkoutFormModel)
+
 const steps = ref(1)
+
+const emit = defineEmits(['checkoutComplete'])
 
 const identifyForm = ref(null)
 const deliveryForm = ref(null)
 const paymentForm = ref(null)
+
+const submitCheckoutForm = async () => {
+  try {
+    const response = await axios.post("http://localhost:3000/offers/OFFER_CODE/create_order", {
+      name: formCheckout.value.name,
+      email: formCheckout.value.email,
+      phone: formCheckout.value.phone,
+      cep: formCheckout.value.cep,
+      street: formCheckout.value.street,
+      number: formCheckout.value.number,
+      city: formCheckout.value.city,
+      state: formCheckout.value.state,
+      paymentMethod: formCheckout.value.paymentMethod,
+      product: formCheckout.value.product,
+      price: formCheckout.value.price,
+      shipping: formCheckout.value.shipping,
+      total: formCheckout.value.total,
+    })
+
+    if (response.data) {
+      emit('checkoutComplete', true)
+    }
+  } catch (error) {
+    console.error("Erro no método post", error)
+  }
+
+}
 
 const validateCurrentStep = async () => {
   const isValid = ref(null)
@@ -60,6 +94,7 @@ const validateCurrentStep = async () => {
       break;
     case 3:
       isValid.value = await paymentForm.value.validate()
+      submitCheckoutForm()
       break;
     default:
       break;
@@ -69,6 +104,5 @@ const validateCurrentStep = async () => {
     steps.value++
   }
 };
-
 
 </script>

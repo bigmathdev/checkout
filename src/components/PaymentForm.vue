@@ -51,8 +51,6 @@ import { storeToRefs } from 'pinia';
 const checkoutFormModel = useCheckoutFormStore()
 const { formCheckout } = storeToRefs(checkoutFormModel)
 
-
-const radio = ref('')
 const paymentForm = ref(null)
 
 const nameCardValidation = ref([value => {
