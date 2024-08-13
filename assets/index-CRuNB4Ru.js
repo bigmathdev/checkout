@@ -1,0 +1,1 @@
+import{u as r,d as t,r as n,o as s,c}from"./index-YcUR4CXH.js";const i={__name:"index",setup(u){const e=r();return t(()=>{e.push("/nike_offer")}),(_,a)=>{const o=n("router-view");return s(),c(o)}}};export{i as default};
