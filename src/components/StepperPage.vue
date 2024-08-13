@@ -93,7 +93,7 @@ const validateCurrentStep = async () => {
       isValid.value = await deliveryForm.value.validate()
       break;
     case 3:
-     await paymentForm.value.validate()
+     isValid.value = await paymentForm.value.validate()
      submitCheckoutForm()
       break;
     default:

@@ -12,7 +12,8 @@ export const handlers = [
       shipping: 13.20,
       productImages: "src/assets/jordan.png",
       quantity: 1,
-      total: 1500
+      total: 1500,
+      subtotal: 1500
     });
   }),
 

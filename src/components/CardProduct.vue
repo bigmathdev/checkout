@@ -66,8 +66,6 @@ import { computed, onMounted } from 'vue';
 const checkoutFormModel = useCheckoutFormStore()
 const { formCheckout } = storeToRefs(checkoutFormModel)
 
-const { getProduct } = useProductStore()
-
 const productRef = useProductStore()
 const { product } = storeToRefs(productRef)
 
@@ -79,6 +77,8 @@ const addProduct = () => {
   if (product.value.quantity >= 1) {
     product.value.total += 1500
     product.value.quantity++
+    formCheckout.value.product = product.value.itemsIncluded
+    formCheckout.value.total = calcShipping.value
   } return null
 }
 
@@ -86,17 +86,11 @@ const minusProduct = () => {
   if (product.value.quantity > 1) {
     product.value.total -= 1500
     product.value.quantity--
+    formCheckout.value.total -= 1500
   }
 }
 
-watch(product, () => {
-  formCheckout.value.price = product.value.price
-  formCheckout.value.product = product.value.itemsIncluded
-  formCheckout.value.shipping = product.value.shipping
-  formCheckout.value.total = product.value.total
-})
-
 onMounted(() => {
-  getProduct()
+  productRef.getProduct()
 })
 </script>
