@@ -77,7 +77,6 @@ const addProduct = () => {
   if (product.value.quantity >= 1) {
     product.value.total += 1500
     product.value.quantity++
-    formCheckout.value.product = product.value.itemsIncluded
     formCheckout.value.total = calcShipping.value
   } return null
 }

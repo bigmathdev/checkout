@@ -9,14 +9,14 @@
 
     <div class="text-center">
       <p class="font-weight-bold">Valor total</p>
-      <p class="text-h5 text-primary">{{ `R$ ${formCheckout.total}` }}</p>
+      <p class="text-h3 text-primary">{{ `R$ ${formCheckout.total.toFixed(2)}` }}</p>
     </div>
 
     <div class="d-flex flex-column align-center ga-3">
       <p>Comprador: <strong>{{ formCheckout.name }}</strong></p>
       <p>Endereço de entrega: <strong>{{ `${formCheckout.street}, ${formCheckout.number} ${formCheckout.city} -
           ${formCheckout.state}` }}</strong></p>
-      <p>Produto: <strong>{{ formCheckout.product }}</strong></p>
+      <p>Produto: <strong>{{ formCheckout.productName }}</strong></p>
       <p>Pago com: <strong>{{ formCheckout.paymentMethod }}</strong></p>
     </div>
   </v-container>

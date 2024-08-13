@@ -12,7 +12,7 @@ export const useCheckoutFormStore = defineStore("CheckoutForm", () => {
     city: "",
     state: "",
     paymentMethod: "",
-    product: "",
+    productName: "Nike Air Jordan Edição Especial",
     price: "",
     shipping: "",
     total: "",

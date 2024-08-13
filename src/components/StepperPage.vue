@@ -94,8 +94,8 @@ const validateCurrentStep = async () => {
       break;
     case 3:
      isValid.value = await paymentForm.value.validate()
-     submitCheckoutForm()
-      break;
+     isValid.value ? submitCheckoutForm() : ''
+     break;
     default:
       break;
   }
