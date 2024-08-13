@@ -57,7 +57,7 @@ const paymentForm = ref(null)
 
 const submitCheckoutForm = async () => {
   try {
-    const response = await axios.post("http://localhost:3000/offers/OFFER_CODE/create_order", {
+    const response = await axios.post("https://api.deepspacestore.com/offers/nike_offer/create_order", {
       name: formCheckout.value.name,
       email: formCheckout.value.email,
       phone: formCheckout.value.phone,

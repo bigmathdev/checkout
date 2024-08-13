@@ -1,7 +1,14 @@
 <template>
-  <checkout></checkout>
+  <router-view />
 </template>
 
 <script setup>
-import checkout from '@/pages/checkout.vue'
+import { useRouter } from 'vue-router'
+import { onMounted } from 'vue'
+
+const router = useRouter()
+
+onMounted(() => {
+  router.push('/nike_offer')
+})
 </script>

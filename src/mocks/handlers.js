@@ -1,7 +1,7 @@
 import { http, HttpResponse } from "msw";
 
 export const handlers = [
-  http.get("https://localhost:3000/OFFER_CODE", () => {
+  http.get("https://api.deepspacestore.com/offers/nike_offer", () => {
     return HttpResponse.json({
       id: 1,
       offerName: "Promo - Nike Air Jordan Edição Especial",
@@ -18,7 +18,7 @@ export const handlers = [
   }),
 
   http.post(
-    "http://localhost:3000/offers/OFFER_CODE/create_order",
+    "https://api.deepspacestore.com/offers/nike_offer/create_order",
     async ({request}) => {
       return new HttpResponse(request.body, {
         status: 201
