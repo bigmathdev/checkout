@@ -1,38 +1,38 @@
 <template>
   <v-stepper alt-labels flat class="bg-white h-100 d-flex flex-column justify-space-between" v-model="steps">
-    <v-stepper-header class="">
+    <v-stepper-header >
       <v-stepper-item :value="1" title="Identificação" :complete="steps > 1" />
-
+  
       <v-divider />
-
+  
       <v-stepper-item :value="2" title="Entrega" :complete="steps > 2" />
-
+  
       <v-divider />
-
+  
       <v-stepper-item :value="3" title="Pagamento" :complete="steps > 3" />
       <v-divider />
-
+  
       <v-stepper-item :value="4" title="Finalizar compra" :complete="steps == 4" />
     </v-stepper-header>
-
+  
     <v-stepper-window>
       <v-stepper-window-item :value="1">
         <IdentifyForm ref="identifyForm" />
       </v-stepper-window-item>
-
+  
       <v-stepper-window-item :value="2">
         <DeliveryForm ref="deliveryForm" />
       </v-stepper-window-item>
-
+  
       <v-stepper-window-item :value="3">
         <PaymentForm ref="paymentForm" />
       </v-stepper-window-item>
-
+  
       <v-stepper-window-item :value="4">
         <p class="text-center font-weight-bold">Confirmando pagamento...</p>
       </v-stepper-window-item>
     </v-stepper-window>
-
+  
     <v-stepper-actions @click:next="validateCurrentStep()" @click:prev="steps--" />
   </v-stepper>
 </template>

@@ -9,7 +9,7 @@
 
     <div class="text-center">
       <p class="font-weight-bold">Valor total</p>
-      <p class="text-h3 text-primary">{{ `R$ ${formCheckout.total.toFixed(2)}` }}</p>
+      <p class="text-h3 text-primary">{{ `R$ ${formCheckout.total}` }}</p>
     </div>
 
     <div class="d-flex flex-column align-center ga-3">

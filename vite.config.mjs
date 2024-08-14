@@ -46,7 +46,7 @@ export default defineConfig({
       vueTemplate: true,
     }),
   ],
-  base: "/checkout",
+  base: "/",
   define: { 'process.env': {} },
   resolve: {
     alias: {

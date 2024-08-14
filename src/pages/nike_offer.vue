@@ -2,7 +2,7 @@
   <v-app>
     <v-main class="d-flex align-center">
       <v-container fluid class="h-85 w-90 d-flex align-center justify-center">
-        <v-card class="w-100 h-100 d-flex align-center justify-center bg-white pa-4 rounded-xl"
+        <v-card class="w-100 h-100 d-flex align-center justify-center bg-white rounded-xl"
           :class="spinner === 100 ? 'flex-column' : ''">
           <v-overlay :model-value="checkoutComplete && spinner < 100" class="align-center justify-center">
             <v-progress-circular :model-value="spinner" :rotate="360" :size="100" :width="15" color="teal">
